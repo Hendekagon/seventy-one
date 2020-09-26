@@ -6,11 +6,16 @@
             [clojure.test.check.properties :as prop]
             [clojure.test.check.clojure-test :refer [defspec]]
             [clojure.test.check :as tc]
-            [com.gfredericks.seventy-one :refer [seventy-one]]))
+            [com.gfredericks.seventy-one :refer [seventy-one]]
+            [com.gfredericks.seventy-one.semigroup.operations.associative.binary.fns :refer [*71]]))
 
 (deftest seventy-one-test
-  (is (= 71 seventy-one))
+  (is (== 71 seventy-one))
   (is (s/valid? :com.gfredericks.seventy-one/seventy-one seventy-one)))
+
+(deftest *seventy-one-test
+  (is (== (count (name 'com.gfredericks.seventy-one.semigroup.operations.associative.binary.fns))
+          (*71 1))))
 
 (defspec seventy-one-is-never-not-71
   100
